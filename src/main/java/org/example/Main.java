@@ -17,7 +17,6 @@ public class Main {
             events.create("Michael Jackson Concert", "2023-10-11", "The Warfield", "concert");
             events.create("The Beatles Concert", "2023-10-12", "The Independent", "concert");
 
-            Database.getConnection().commit();
             events.findAll().forEach(System.out::println);
             Database.getConnection().close();
         } catch (SQLException e) {

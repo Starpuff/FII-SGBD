@@ -14,13 +14,13 @@ import java.util.List;
 public class EventDAO {
     public void create(String name, String dateString, String location, String type) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = null;
+        Date date;
         Connection conn = Database.getConnection();
         try (PreparedStatement pstmt = conn.prepareStatement(
-                "insert into events (name, date, location, type) values (?, ?, ?, ?)")) {
+                "insert into events (name, eventDate, location, type) values (?, ?, ?, ?)")) {
             date = dateFormat.parse(dateString);
             pstmt.setString(1, name);
-            pstmt.setDate(2, (java.sql.Date) date);
+            pstmt.setDate(2, new java.sql.Date(date.getTime()));
             pstmt.setString(3, location);
             pstmt.setString(4, type);
             pstmt.executeUpdate();
@@ -53,8 +53,8 @@ public class EventDAO {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                Date date = rs.getDate("date");
-                String location = rs.getString("location_id");
+                Date date = rs.getDate("eventDate");
+                String location = rs.getString("location");
                 String type = rs.getString("type");
                 events.add(new Event(id, name, date, location,type));
             }
@@ -70,11 +70,11 @@ public class EventDAO {
         Connection conn = Database.getConnection();
         List<Event> events = new ArrayList<>();
         try (Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("select * from events where date ='" + date +"'")) {
+             ResultSet rs = stmt.executeQuery("select * from events where eventDate ='" + date +"'")) {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                String location = rs.getString("location_id");
+                String location = rs.getString("location");
                 String type = rs.getString("type");
                 events.add(new Event(id, name, date, location,type));
             }
@@ -93,8 +93,8 @@ public class EventDAO {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                Date date = rs.getDate("date");
-                String location = rs.getString("location_id");
+                Date date = rs.getDate("eventDate");
+                String location = rs.getString("location");
                 events.add(new Event(id, name, date, location,type));
             }
             return (long) events.size() > 0 ? events : null;
