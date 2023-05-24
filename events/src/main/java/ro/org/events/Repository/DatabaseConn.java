@@ -13,13 +13,13 @@ public class DatabaseConn {
 
     public static Connection getConnection()
     {
-        if(conn==null)
-        {
-            try {
+        try {
+            if(conn==null || conn.isClosed())
+            {
                 conn = DriverManager.getConnection(url, username, password);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         return conn;

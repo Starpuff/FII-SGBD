@@ -1,10 +1,7 @@
 package ro.org.events.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ro.org.events.Services.UserService;
 
 @RestController
@@ -24,5 +21,10 @@ public class UserController {
                              @RequestParam("is_admin") boolean is_admin) {
 
         return userService.createUser(username, password, is_admin);
+    }
+
+    @GetMapping("/users/{id}")
+    public String getUser(@PathVariable("id") int id) {
+        return userService.getUser_byId(id).toString();
     }
 }

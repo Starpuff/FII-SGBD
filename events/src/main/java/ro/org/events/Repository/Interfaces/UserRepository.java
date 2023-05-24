@@ -6,7 +6,7 @@ public interface UserRepository{
 
     public String createUser(String username, String password, boolean is_admin);
 
-    public User getUser_byId(Long id);
+    public User getUser_byId(int id);
 
     public User getUser_byUsername(String username);
     public String updateUser(String username, String password, boolean is_admin);

@@ -13,7 +13,7 @@ DECLARE
 BEGIN
     BEGIN
 		--Attempt to insert the new user
-		INSERT INTO user_package.users (username, password, is_admin)
+		INSERT INTO users (username, password, is_admin)
 		VALUES (p_username, p_password, p_is_admin);
 
 		--If the insertion is successful, set the result message
@@ -28,14 +28,14 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Create a function to get a user by ID within the user_package schema
-CREATE FUNCTION user_package.get_user_by_id(p_id INTEGER) RETURNS user_package.users AS $$
+CREATE FUNCTION user_package.get_user_by_id(p_id INTEGER) RETURNS users AS $$
 DECLARE
-    user_row user_package.users;
+    user_row users;
 	result VARCHAR(255);
 BEGIN
 	BEGIN
     -- Your implementation here
-     	SELECT * INTO user_row FROM user_package.users WHERE id = p_id;
+     	SELECT * INTO user_row FROM users WHERE id = p_id;
 		result:= 'The user with the given ID has been found';
 	EXCEPTION
 		when others THEN
@@ -47,13 +47,13 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Create a function to get a user by username within the user_package schema
-CREATE FUNCTION user_package.get_user_by_username(p_username VARCHAR(15)) RETURNS user_package.users AS $$
+CREATE FUNCTION user_package.get_user_by_username(p_username VARCHAR(15)) RETURNS users AS $$
 DECLARE
-    user_row user_package.users;
+    user_row users;
 	result varchar(255);
 BEGIN
 	BEGIN
-    	SELECT * INTO user_row FROM user_package.users WHERE username = p_username;
+    	SELECT * INTO user_row FROM users WHERE username = p_username;
 		result := 'The user with the given username has been found';
 	EXCEPTION
 		when others then
@@ -76,7 +76,7 @@ DECLARE
 BEGIN
     -- Your implementation here
 	BEGIN
-    	UPDATE user_package.users
+    	UPDATE users
      	SET
         	username = p_username,
          	password = p_password,
@@ -98,7 +98,7 @@ DECLARE
 	result varchar(255);
 BEGIN
 	BEGIN
-    	DELETE FROM user_package.users WHERE id = p_id;
+    	DELETE FROM users WHERE id = p_id;
 		result := 'The user was SUCCESSFULLY deleted';
 	EXCEPTION
 		when others then
