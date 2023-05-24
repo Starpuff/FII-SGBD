@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+public class UserModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -44,5 +44,19 @@ public class User implements Serializable {
 
     public boolean getIsAdmin() {
         return is_admin;
+    }
+
+    @Override
+    public String toString() {
+        if(id==0)
+        {
+            return null;
+        }
+        return "UserModel{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", is_admin=" + is_admin +
+                '}';
     }
 }

@@ -3,19 +3,16 @@ package ro.org.events.Repository.Implementations;
 import org.springframework.stereotype.Repository;
 import ro.org.events.Repository.DatabaseConn;
 import ro.org.events.Repository.Interfaces.UserRepository;
-import ro.org.events.Repository.Models.User;
+import ro.org.events.Repository.Models.UserModel;
 
-import java.sql.CallableStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
+import java.sql.*;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository{
     @Override
     public String createUser(String username, String password, boolean is_admin) {
         String sql = "{? = call user_package.create_user(?,?,?)}";
-        String message = "";
+        String message;
 
         try {
             CallableStatement callableStatement = DatabaseConn.getConnection().prepareCall(sql);
@@ -40,41 +37,38 @@ public class UserRepositoryImpl implements UserRepository{
 
 
     @Override
-    public User getUser_byId(int id) {
-        String sql = "{call user_package.get_user_by_id(?,?,?,?)}";
-        User user = null;
+    public UserModel getUser_byId(int id) {
+        UserModel user = null;
 
-        try {
+        try (Connection conn = DatabaseConn.getConnection()) {
+            CallableStatement stmt = conn.prepareCall("{CALL user_package.get_user_by_id(?)}");
 
-            CallableStatement callableStatement = DatabaseConn.getConnection().prepareCall(sql);
-            callableStatement.setInt(1, id);
-            callableStatement.registerOutParameter(2, Types.VARCHAR);
-            callableStatement.registerOutParameter(3, Types.VARCHAR);
-            callableStatement.registerOutParameter(4, Types.BOOLEAN);
-            callableStatement.execute();
+            // Set input parameter
+            stmt.setInt(1, id);
 
-            String username = callableStatement.getString(2);
-            String password = callableStatement.getString(3);
-            boolean is_admin = callableStatement.getBoolean(4);
+            // Execute the stored function
+            ResultSet rs = stmt.executeQuery();
 
-            user = new User();
-            user.setId(id);
-            user.setUsername(username);
-            user.setPassword(password);
-            user.setIsAdmin(is_admin);
+            if (rs.next()) {
+                user = new UserModel();
+                user.setId(rs.getInt("id"));
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+                user.setIsAdmin(rs.getBoolean("is_admin"));
+            }
 
-
-            callableStatement.close();
-            DatabaseConn.getConnection().close();
+            rs.close();
+            stmt.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
         return user;
     }
 
+
     @Override
-    public User getUser_byUsername(String username) {
+    public UserModel getUser_byUsername(String username) {
         return null;
     }
 

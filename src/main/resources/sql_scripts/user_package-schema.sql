@@ -22,20 +22,17 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION user_package.get_user_by_id(p_id INTEGER) RETURNS users AS $$
+CREATE FUNCTION user_package.get_user_by_id(p_id INTEGER) RETURNS SETOF users AS $$
 DECLARE
     user_row users;
-	result VARCHAR(255);
 BEGIN
-	BEGIN
-     	SELECT * INTO user_row FROM users WHERE id = p_id;
-		result:= 'The user with the given ID has been found';
-	EXCEPTION
-		when others THEN
-			result:= 'ERROR: The user with the given ID has NOT been found';
-			RETURN null;
-	END;
-    RETURN user_row;
+    BEGIN
+        SELECT * INTO user_row FROM users WHERE id = p_id;
+        RETURN NEXT user_row;
+    EXCEPTION
+        WHEN OTHERS THEN
+            RETURN;
+    END;
 END;
 $$ LANGUAGE plpgsql;
 

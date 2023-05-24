@@ -4,7 +4,7 @@ package ro.org.events.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.org.events.Repository.Implementations.UserRepositoryImpl;
-import ro.org.events.Repository.Models.User;
+import ro.org.events.Repository.Models.UserModel;
 
 @Service
 public class UserService {
@@ -20,7 +20,7 @@ public class UserService {
         return userRepository.createUser(username, password, isAdmin);
     }
 
-    public User getUser_byId(int id) {
+    public UserModel getUser_byId(int id) {
         return userRepository.getUser_byId(id);
     }
 }
