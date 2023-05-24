@@ -39,7 +39,7 @@ public class UserRepositoryImpl implements UserRepository{
 
     @Override
     public User getUser_byId(Long id) {
-        return null;
+        String sql = "{? = call user_package.get_user_by_id(?)}";
     }
 
     @Override
