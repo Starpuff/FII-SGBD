@@ -23,9 +23,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION user_package.get_user_by_id(p_id INTEGER) RETURNS user_package.users AS $$
+CREATE FUNCTION user_package.get_user_by_id(p_id INTEGER) RETURNS users AS $$
 DECLARE
-    user_row user_package.users;
+    user_row users;
 	result VARCHAR(255);
 BEGIN
 	BEGIN
@@ -40,9 +40,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION user_package.get_user_by_username(p_username VARCHAR(15)) RETURNS user_package.users AS $$
+CREATE FUNCTION user_package.get_user_by_username(p_username VARCHAR(15)) RETURNS users AS $$
 DECLARE
-    user_row user_package.users;
+    user_row users;
 	result varchar(255);
 BEGIN
 	BEGIN
