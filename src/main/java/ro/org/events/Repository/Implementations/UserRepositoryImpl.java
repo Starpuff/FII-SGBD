@@ -41,24 +41,29 @@ public class UserRepositoryImpl implements UserRepository{
 
     @Override
     public User getUser_byId(int id) {
-        String sql = "{? = call user_package.get_user_by_id(?)}";
+        String sql = "{call user_package.get_user_by_id(?,?,?,?)}";
         User user = null;
 
         try {
 
             CallableStatement callableStatement = DatabaseConn.getConnection().prepareCall(sql);
-            callableStatement.registerOutParameter(1, Types.JAVA_OBJECT);
-            callableStatement.setInt(2, id);
+            callableStatement.setInt(1, id);
+            callableStatement.registerOutParameter(2, Types.VARCHAR);
+            callableStatement.registerOutParameter(3, Types.VARCHAR);
+            callableStatement.registerOutParameter(4, Types.BOOLEAN);
             callableStatement.execute();
 
-            ResultSet resultSet = (ResultSet) callableStatement.getObject(2);
-            if (resultSet.next()) {
-                user = new User();
-                user.setId(resultSet.getInt("id"));
-                user.setUsername(resultSet.getString("username"));
-            }
+            String username = callableStatement.getString(2);
+            String password = callableStatement.getString(3);
+            boolean is_admin = callableStatement.getBoolean(4);
 
-            resultSet.close();
+            user = new User();
+            user.setId(id);
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setIsAdmin(is_admin);
+
+
             callableStatement.close();
             DatabaseConn.getConnection().close();
         } catch (SQLException e) {
@@ -67,8 +72,6 @@ public class UserRepositoryImpl implements UserRepository{
 
         return user;
     }
-
-
 
     @Override
     public User getUser_byUsername(String username) {

@@ -39,7 +39,6 @@ CREATE TABLE locations_description (
 	cu_cascada BOOL
 );
 
-ALTER TABLE events RENAME COLUMN eventDate to event_date;
 ALTER TABLE events ADD ticket_price INT;
 ALTER TABLE events DROP COLUMN location;
 ALTER TABLE users ADD CONSTRAINT username_unique UNIQUE(username);
