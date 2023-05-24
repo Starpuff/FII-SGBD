@@ -1,40 +1,33 @@
 DROP SCHEMA user_package CASCADE;
--- Create the user_package schema
 CREATE SCHEMA user_package;
 
--- Create a function to create a new user within the user_package schema
 CREATE FUNCTION user_package.create_user(
     p_username VARCHAR(15),
     p_password VARCHAR(15),
     p_is_admin BOOL
 ) RETURNS VARCHAR(255) AS $$
 DECLARE
-	result VARCHAR(255);
+    result VARCHAR(255);
 BEGIN
     BEGIN
-		--Attempt to insert the new user
-		INSERT INTO users (username, password, is_admin)
-		VALUES (p_username, p_password, p_is_admin);
+        INSERT INTO users (username, password, is_admin)
+        VALUES (p_username, p_password, p_is_admin);
+        result := 'The user has been SUCCESSFULLY registered';
+    EXCEPTION
+        WHEN others THEN
+            result := 'The user FAILED to register';
+    END;
 
-		--If the insertion is successful, set the result message
-		result := 'The user has been SUCCESSFULLY registered';
-	EXCEPTION
-		WHEN others THEN
-			--If an exception occurs, set the result message
-			result := 'The user FAILED to register';
-	END;
-	return result;
+    RETURN result;
 END;
 $$ LANGUAGE plpgsql;
 
--- Create a function to get a user by ID within the user_package schema
 CREATE FUNCTION user_package.get_user_by_id(p_id INTEGER) RETURNS users AS $$
 DECLARE
     user_row users;
 	result VARCHAR(255);
 BEGIN
 	BEGIN
-    -- Your implementation here
      	SELECT * INTO user_row FROM users WHERE id = p_id;
 		result:= 'The user with the given ID has been found';
 	EXCEPTION
@@ -46,7 +39,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Create a function to get a user by username within the user_package schema
 CREATE FUNCTION user_package.get_user_by_username(p_username VARCHAR(15)) RETURNS users AS $$
 DECLARE
     user_row users;
@@ -64,7 +56,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Create a function to update an existing user within the user_package schema
 CREATE FUNCTION user_package.update_user(
     p_id INTEGER,
     p_username VARCHAR(15),
@@ -74,7 +65,6 @@ CREATE FUNCTION user_package.update_user(
 DECLARE
 	result varchar(255);
 BEGIN
-    -- Your implementation here
 	BEGIN
     	UPDATE users
      	SET
@@ -92,7 +82,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Create a function to delete a user by ID within the user_package schema
 CREATE FUNCTION user_package.delete_user(p_id INTEGER) RETURNS VARCHAR(255) AS $$
 DECLARE
 	result varchar(255);
@@ -107,4 +96,4 @@ BEGIN
 	return result;
 END;
 $$ LANGUAGE plpgsql;
-/
+
