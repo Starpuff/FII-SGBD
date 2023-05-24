@@ -28,7 +28,7 @@ public class UserRepositoryImpl implements UserRepository{
             message = callableStatement.getString(1);
             callableStatement.close();
 
-            DatabaseConn.getConnection().close();
+            //DatabaseConn.getConnection().close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
