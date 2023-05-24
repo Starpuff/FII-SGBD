@@ -12,16 +12,14 @@ import java.sql.SQLException;
 public class UserRepositoryImpl implements UserRepository{
     @Override
     public String createUser(String username, String password, boolean is_admin) {
-
         String sql = "{? = call user_package.create_user(?,?,?)}";
-
         String message = "";
+
         try {
-            CallableStatement callableStatement = DatabaseConn.getConnection()
-                    .prepareCall(sql);
+            CallableStatement callableStatement = DatabaseConn.getConnection().prepareCall(sql);
             callableStatement.setString(2, username);
             callableStatement.setString(3, password);
-            callableStatement.setString(4, password);
+            callableStatement.setBoolean(4, is_admin); // Use setBoolean to pass boolean value
 
             callableStatement.registerOutParameter(1, java.sql.Types.VARCHAR);
 
@@ -31,13 +29,13 @@ public class UserRepositoryImpl implements UserRepository{
             callableStatement.close();
 
             DatabaseConn.getConnection().close();
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
         return message;
     }
+
 
     @Override
     public User getUser_byId(Long id) {
