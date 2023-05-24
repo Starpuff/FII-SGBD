@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca53e991-e1d4-43ee-9fb1-69882df37e85" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/create-tables.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/triggers.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/user_package-schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/create-tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/create-tables.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
