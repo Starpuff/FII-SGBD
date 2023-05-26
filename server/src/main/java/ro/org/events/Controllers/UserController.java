@@ -23,8 +23,32 @@ public class UserController {
         return userService.createUser(username, password, is_admin);
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/users/id/{id}")
     public String getUser(@PathVariable("id") int id) {
         return userService.getUser_byId(id).toString();
+    }
+
+    @GetMapping("/users/username/{username}")
+    public String getUser(@PathVariable("username") String username) {
+        return userService.getUser_byUsername(username).toString();
+    }
+
+    @PutMapping("/users/{id}")
+    public String updateUser(@PathVariable("id") int id,
+                             @RequestParam("username") String username,
+                             @RequestParam("password") String password,
+                             @RequestParam("is_admin") boolean is_admin) {
+
+        return userService.updateUser(id, username, password, is_admin);
+    }
+
+    @DeleteMapping("/users/id/{id}")
+    public String deleteUser(@PathVariable("id") int id) {
+        return userService.deleteUser_byId(id);
+    }
+
+    @DeleteMapping("/users/username/{username}")
+    public String deleteUser(@PathVariable("username") String username) {
+        return userService.deleteUser_byUsername(username);
     }
 }

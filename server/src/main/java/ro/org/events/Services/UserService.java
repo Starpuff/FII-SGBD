@@ -23,4 +23,19 @@ public class UserService {
     public UserModel getUser_byId(int id) {
         return userRepository.getUser_byId(id);
     }
+
+    public UserModel getUser_byUsername(String username) {
+        return userRepository.getUser_byUsername(username);
+    }
+
+    public String updateUser(int id, String username, String password, boolean isAdmin) {
+        return userRepository.updateUser(id, username, password, isAdmin);
+    }
+    public String deleteUser_byId(int id) {
+        return userRepository.deleteUser_byId(id);
+    }
+
+    public String deleteUser_byUsername(String username) {
+        return userRepository.deleteUser_byUsername(username);
+    }
 }
