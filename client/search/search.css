@@ -47,6 +47,29 @@
     margin: 0 auto;
     padding-top: 20px;
   }
+
+  .title-add {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .title-add h2 {
+    margin-right: 20px;
+  }
+
+  .title-add button {
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    align-self: center;
+  }
+
+  .title-add button:hover {
+    background-color: #111;
+  }
   
   form {
     display: flex;
@@ -75,6 +98,10 @@
     color: #fff;
     border: none;
     cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #111;
   }
   
   #event-grid {
