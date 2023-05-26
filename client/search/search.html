@@ -19,26 +19,32 @@
   </header>
 
   <div class="container">
+
     <div class="title-add">
       <h2>Search Events</h2>
       <button class="add_event">+ Add Event</button>
     </div>
     <form id="search-form">
-      <div class="form-row">
-        <label for="event-name">Event Name:</label>
-        <input type="text" id="event-name" name="event-name">
+
+      <div class ="event-name-search">
+        <div class="form-row">
+          <label for="event-name">Event Name:</label>
+          <input type="text" id="event-name" name="event-name">
+        </div>
+        <div class="form-row">
+          <input type="submit" value="Search">
+        </div>
       </div>
-      <div class="form-row">
-        <input type="submit" value="Search">
+      <img src="../images/linie-despartitoare.png">
+      <div class = "location-name-search">
+        <div class="form-row">
+          <label for="location-name">Location Name:</label>
+          <input type="text" id="location-name" name="location-name">
+        </div>
+        <div class="form-row">
+          <input type="submit" value="Search">
+        </div>
       </div>
-      <div class="form-row">
-        <label for="location-name">Location Name:</label>
-        <input type="text" id="location-name" name="location-name">
-      </div>
-      <div class="form-row">
-        <input type="submit" value="Search">
-      </div>
-      
     </form>
 
     <div id="event-grid">

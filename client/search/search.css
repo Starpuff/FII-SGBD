@@ -73,8 +73,24 @@
   
   form {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap :wrap;
     margin-bottom: 20px;
+  }
+
+  .event-name-search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  
+
+  .location-name-search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 20px;
   }
   
   .form-row {
