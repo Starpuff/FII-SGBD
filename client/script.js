@@ -17,8 +17,10 @@ document.getElementById("login-form").addEventListener("submit", function(event)
     if (data === -1) {
       alert("Invalid username or password");
     } else {
+      // Store the user id in session storage
+      sessionStorage.setItem("userId", data);
       // Redirect to search page or perform any other action based on the user id
-      window.location.href = "../search/search.html?id=" + data;
+      window.location.href = "../search/search.html";
     }
   })
   .catch(function(error) {
