@@ -1,6 +1,5 @@
 package ro.org.events.Repository.Implementations;
 
-import org.aspectj.weaver.ast.Call;
 import org.springframework.stereotype.Repository;
 import ro.org.events.Repository.DatabaseConn;
 import ro.org.events.Repository.Interfaces.IAuthRepository;
