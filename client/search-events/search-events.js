@@ -2,7 +2,8 @@ const popup = document.getElementById('add-event-popup');
 const addEventButton = document.querySelector('.add_event');
 const closeButton = popup.querySelector('.close');
 const addEventForm = document.getElementById('add-event-form');
-const eventTypeInput = addEventForm.elements['event-type'];
+const eventTypeInput = addEventForm.elements['event-visibility'];
+console.log(eventTypeInput);
 const invitedPeopleContainer = document.getElementById('invited-people-container');
 
 function openPopup() {
@@ -17,7 +18,7 @@ addEventButton.addEventListener('click', openPopup);
 closeButton.addEventListener('click', closePopup);
 
 eventTypeInput.addEventListener('change', function() {
-  invitedPeopleContainer.style.display = (this.value === 'private') ? 'block' : 'none';
+  invitedPeopleContainer.style.display = (this.value === 'private') ? 'flex' : 'none';
 });
 
 addEventForm.addEventListener('submit', function(e) {

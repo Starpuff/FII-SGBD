@@ -189,12 +189,13 @@
 }
 
 /* Add Event Pop-up styles */
+
 #add-event-popup {
   display: none;
   position: fixed;
   z-index: 9999;
   left: 0;
-  top: -50px;
+  top: 0px;
   overflow:auto;
   background-color: rgba(0, 0, 0, 0.5);
 }
@@ -205,6 +206,7 @@
 
 #add-event-popup h2 {
   text-align: center;
+  margin-bottom: 50px;
 }
 
 #add-event-form {
@@ -212,31 +214,47 @@
   flex-direction: column;
 }
 
+.a-form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
 .b-form-row {
   display: flex;
   flex-direction: row;
 
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-.b-form-row label {
+.b-form-row label,
+.a-form-row label {
   display: flex;
   align-self: center;
   margin-right: 10px;
 }
 
 .form-row-button {
+  margin-top: 20px;
   align-self: center;
 }
 
 #add-event-form label {
   display: block;
-  margin-bottom: 10px;
+  align-self: center;
 }
 
 #invited-people-container {
   display: none;
+}
+
+#invited-people {
+  width: 200px;
+  padding: 5px;
+  display: flex;
+  height: 70px;
 }
 
 #event-type {
@@ -249,10 +267,12 @@
 
 #add-event-form button[type="submit"] {
   padding: 5px 10px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    align-self: center;
 }
 
 #add-event-form button[type="submit"]:hover {

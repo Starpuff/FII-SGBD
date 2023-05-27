@@ -115,11 +115,11 @@
         <span class="close">&times;</span>
         <h2>Add Event</h2>
         <form id="add-event-form">
-          <div class="b-form-row">
+          <div class="a-form-row">
             <label for="event-name">Event Name:</label>
             <input type="text" id="event-name" name="event-name" required>
           </div>
-          <div class="b-form-row">
+          <div class="a-form-row">
             <label for="event-location">Event Location:</label>
             <input type="text" id="event-location" name="event-location" required>
           </div>
@@ -134,9 +134,9 @@
               <option value="private">Private</option>
             </select>
           </div>
-          <div class="b-form-row" id="invited-people-row" style="display: none;">
+          <div class="a-form-row" id="invited-people-container" style="display: none;">
             <label for="invited-people">Invited People:</label>
-            <textarea id="invited-people" name="invited-people"></textarea>
+            <textarea id="invited-people" name="invited-people" placeholder="username1, username2, username3, ..."></textarea>
           </div>
           <div class="form-row-button">
             <button type="submit">Add Event</button>

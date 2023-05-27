@@ -110,7 +110,6 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-right: 20px;
   }
 
   form img {
@@ -162,4 +161,104 @@ header {
     border: 1px solid #ccc;
     padding: 10px;
   }
+
+/* Add Event Pop-up styles */
+
+#add-event-popup {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0px;
+  overflow:auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#add-event-popup.open {
+  display: block;
+}
+
+#add-event-popup h2 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+#add-event-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.a-form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.b-form-row {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.b-form-row label,
+.a-form-row label {
+  display: flex;
+  align-self: center;
+  margin-right: 10px;
+}
+
+.form-row-button {
+  margin-top: 20px;
+  align-self: center;
+}
+
+#add-event-form label {
+  display: block;
+  align-self: center;
+}
+
+#invited-people-container {
+  display: none;
+}
+
+#invited-people {
+  width: 200px;
+  padding: 5px;
+  display: flex;
+  height: 70px;
+}
+
+#event-type {
+  margin-bottom: 10px;
+}
+
+#event-type:focus + #invited-people-container {
+  display: block;
+}
+
+#add-event-form button[type="submit"] {
+  padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    align-self: center;
+}
+
+#add-event-form button[type="submit"]:hover {
+  background-color: #111;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
   
