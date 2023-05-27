@@ -108,6 +108,44 @@
         <p>Description: Lorem ipsum dolor sit amet</p>
       </div>
     </div>
+
+    <!-- Pop-up form for adding events -->
+    <div id="add-event-popup" class="popup">
+      <div class="popup-content">
+        <span class="close">&times;</span>
+        <h2>Add Event</h2>
+        <form id="add-event-form">
+          <div class="b-form-row">
+            <label for="event-name">Event Name:</label>
+            <input type="text" id="event-name" name="event-name" required>
+          </div>
+          <div class="b-form-row">
+            <label for="event-location">Event Location:</label>
+            <input type="text" id="event-location" name="event-location" required>
+          </div>
+          <div class="b-form-row">
+            <label for="event-date">Event Date:</label>
+            <input type="date" id="event-date" name="event-date" required>
+          </div>
+          <div class="b-form-row">
+            <label for="event-visibility">Event Visibility:</label>
+            <select id="event-visibility" name="event-visibility">
+              <option value="public">Public</option>
+              <option value="private">Private</option>
+            </select>
+          </div>
+          <div class="b-form-row" id="invited-people-row" style="display: none;">
+            <label for="invited-people">Invited People:</label>
+            <textarea id="invited-people" name="invited-people"></textarea>
+          </div>
+          <div class="form-row-button">
+            <button type="submit">Add Event</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+
   </div>
 
   <script src="search-events.js"></script>
