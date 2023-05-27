@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Search Page</title>
-  <link rel="stylesheet" type="text/css" href="search.css">
+  <title>Search Events Page</title>
+  <link rel="stylesheet" type="text/css" href="search-events.css">
 </head>
 <body>
   <header>
@@ -20,9 +20,17 @@
 
   <div class="container">
 
-    <div class="title-add">
-      <h2>Search Events</h2>
+    <div class="searches">
+      <ul>
+        <li><h2 id="search-events"><a href="#">Search Events</a></h2></li>
+        <li><h2 id="search-locations"><a href="../search-locations/search-locations.html">Search Locations</a></h2></li>
+        <button class="add_event">+ Add Event</button>
+      </ul>
+      <!--
+      <h2 id="search-events">Search Events</h2>
+      <h2 id="search-locations">Search Locations</h2>
       <button class="add_event">+ Add Event</button>
+      -->
     </div>
     <form id="search-form">
 
@@ -35,7 +43,7 @@
           <input type="submit" value="Search">
         </div>
       </div>
-      <img src="../images/linie-despartitoare.png">
+      <img src="../images/linie-orizontala.png">
       <div class = "location-name-search">
         <div class="form-row">
           <label for="location-name">Location Name:</label>
@@ -102,6 +110,6 @@
     </div>
   </div>
 
-  <script src="search.js"></script>
+  <script src="search-events.js"></script>
 </body>
 </html>

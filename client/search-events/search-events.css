@@ -48,16 +48,45 @@
     padding-top: 20px;
   }
 
-  .title-add {
+  .searches {
     display: flex;
     flex-direction: row;
   }
 
-  .title-add h2 {
+  .searches ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .searches ul li {
+    display: inline-block;
+  }
+
+  .searches ul li a {
+    display: block;
+    color: #111;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    border: 1px solid rgb(204, 204, 204);
+  }
+
+  .searches h2 {
     margin-right: 20px;
   }
 
-  .title-add button {
+  .searches #search-events {
+    background-color: #f1f1f1;
+  }
+
+  .searches #search-locations:hover {
+    background-color: #f1f1f1;
+  }
+
+
+  .searches button {
     padding: 5px 10px;
     background-color: #333;
     color: #fff;
@@ -67,7 +96,7 @@
     align-self: center;
   }
 
-  .title-add button:hover {
+  .searches button:hover {
     background-color: #111;
   }
   
@@ -81,10 +110,12 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-right: 20px;
   }
 
-  
+  form img {
+    max-width: 50px;
+    margin-right: 15px;
+  }
 
   .location-name-search {
     display: flex;
