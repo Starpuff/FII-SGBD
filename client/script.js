@@ -16,6 +16,13 @@ document.getElementById("login-form").addEventListener("submit", function(event)
     // Process the response data
     if (data === -1) {
       alert("Invalid username or password");
+    } else if(data.isAdmin == true)
+    {
+      // Store the user id in session storage
+      sessionStorage.setItem("userId", data.userId);
+      sessionStorage.setItem("isAdmin", data.isAdmin);
+      // Redirect to search page or perform any other action based on the user id
+      window.location.href = "../admin-search-events/adm-events.html";
     } else {
       // Store the user id in session storage
       sessionStorage.setItem("userId", data.userId);

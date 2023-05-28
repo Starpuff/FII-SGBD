@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Search Events Page</title>
+  <link rel="stylesheet" type="text/css" href="adm-events.css">
+</head>
+<body>
+  <header>
+    <img src="../images/event_manager_nav.png">
+    <nav>
+      
+      <ul>
+        <li><a href="../admin-search-events/adm-events.html">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="../index.html">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="content">
+  <div class="container">
+
+    <div class="searches">
+      <ul>
+        <li><h2 id="search-events"><a href="#">Events</a></h2></li>
+        <li><h2 id="search-locations"><a href="../admin-search-locations/adm-locations.html">Locations</a></h2></li>
+        <button class="add_event">+ Add Event</button>
+        <button class="add_location">+ Add Location</button>
+      </ul>
+    </div>
+    <form id="search-form">
+
+      <div class ="event-name-search">
+        <div class="form-row">
+          <label for="event-name">Event Name:</label>
+          <input type="text" id="event-name" name="event-name">
+        </div>
+        <div class="form-row">
+          <input type="submit" value="Search">
+        </div>
+      </div>
+      <img src="../images/linie-orizontala.png">
+      <div class = "location-name-search">
+        <div class="form-row">
+          <label for="location-name">Location Name:</label>
+          <input type="text" id="location-name" name="location-name">
+        </div>
+        <div class="form-row">
+          <input type="submit" value="Search">
+        </div>
+      </div>
+    </form>
+
+
+    <!-- Event grid new -->
+  <div id="event-grid">
+
+    <!-- Event Template -->
+    <div id="event-template" style="display: none;">
+      <div class="event">
+        <h3 class="event-name"></h3>
+        <p class="event-location"></p>
+        <p class="event-description"></p>
+        <button class="delete-event-button"><img src="../images/trash.png"></button>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Pop-up form for adding events -->
+    <div id="add-event-popup" class="popup">
+      <div class="popup-content">
+        <span class="close">&times;</span>
+        <h2>Add Event</h2>
+        <form id="add-event-form">
+          <div class="a-form-row">
+            <label for="event-name">Event Name:</label>
+            <input type="text" id="event-name" name="event-name" required>
+          </div>
+          <div class="a-form-row">
+            <label for="event-location">Event Location:</label>
+            <input type="text" id="event-location" name="event-location" required>
+          </div>
+          <div class="b-form-row">
+            <label for="event-date">Event Date:</label>
+            <input type="date" id="event-date" name="event-date" required>
+          </div>
+          <div class="b-form-row">
+            <label for="event-visibility">Event Visibility:</label>
+            <select id="event-visibility" name="event-visibility">
+              <option value="public">Public</option>
+              <option value="private">Private</option>
+            </select>
+          </div>
+          <div class="a-form-row" id="invited-people-container" style="display: none;">
+            <label for="invited-people">Invited People:</label>
+            <textarea id="invited-people" name="invited-people" placeholder="username1, username2, username3, ..."></textarea>
+          </div>
+          <div class="form-row-button">
+            <button type="submit">Add Event</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Pop-up form for adding locations -->
+    <div id="add-location-popup" class="popup">
+      <div class="popup-content">
+        <span class="close">&times;</span>
+        <h2>Add Location</h2>
+        <form id="add-location-form">
+          <div class="a-form-row">
+            <label for="location-name">Location Name:</label>
+            <input type="text" id="location-name" name="location-name" required />
+          </div>
+          <div class="a-form-row">
+              <label for="location-address">Location Address:</label>
+              <input type="text" id="location-address" name="location-address" required />
+          </div>
+          <div class="a-form-row">
+              <label for="locatin-capacity">Location Capacity:</label>
+              <input type="number" id="location-capacity" name="location-capacity" required />
+          </div>
+          <div
+            class="a-form-row"
+            id="description-container"
+          >
+            <label for="description">Location Description:</label>
+            <textarea
+              id="description"
+              name="description"
+              placeholder="By the sea, has a water fountain, ..."
+            ></textarea>
+          </div>
+          <div class="form-row-button">
+            <button type="submit">Add Location</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+  </div>
+  </div>
+
+  <script src="adm-events.js"></script>
+</body>
+</html>

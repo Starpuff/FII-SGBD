@@ -100,6 +100,7 @@
     cursor: pointer;
     height: 30px;
     align-self: center;
+    margin-bottom: 10px;
   }
 
   .searches button:hover {

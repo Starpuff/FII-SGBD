@@ -83,11 +83,11 @@ header {
     margin-right: 20px;
   }
 
-  .searches #search-locations {
+  .searches #search-events {
     background-color: #f1f1f1;
   }
 
-  .searches #search-events:hover {
+  .searches #search-locations:hover {
     background-color: #f1f1f1;
   }
 
@@ -113,7 +113,7 @@ header {
     margin-bottom: 20px;
   }
 
-  .location-name-search {
+  .event-name-search {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -124,7 +124,7 @@ header {
     margin-right: 15px;
   }
 
-  .location-description-search {
+  .location-name-search {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -158,29 +158,34 @@ header {
     background-color: #111;
   }
   
-  #location-grid {
+  #event-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
   }
   
-  .location {
+  .event {
     border: 1px solid #ccc;
     padding: 10px;
   }
 
-/* Add Event Pop-up styles */
+  .event button {
+    width: 100%;
+    height: 50px; /* Set the desired height */
+    background-color: #fff;
+    color: #000; /* Change the text color to make it visible */
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
+  .event button:hover {
+    background-color: #f1f1f1;
+  }
 
-#add-event-popup {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0;
-  top: 0px;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-}
+/* Pop-up styles */
 .popup {
   display: none;
   position: fixed;
@@ -190,10 +195,6 @@ header {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-}
-
-#add-event-popup.open {
-  display: block;
 }
 
 .popup-content {
@@ -206,6 +207,22 @@ header {
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
+}
+
+/* Add Event Pop-up styles */
+
+#add-event-popup {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0px;
+  overflow:auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#add-event-popup.open {
+  display: block;
 }
 
 #add-event-popup h2 {
@@ -280,6 +297,67 @@ header {
 }
 
 #add-event-form button[type="submit"]:hover {
+  background-color: #111;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Add Location Pop-up styles */
+#add-location-popup {
+  display: none;
+position: fixed;
+z-index: 9999;
+left: 0;
+top: 0px;
+overflow:auto;
+background-color: rgba(0, 0, 0, 0.5);
+}
+
+#add-location-popup.open {
+  display: block;
+}
+
+#add-location-popup h2 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+#add-location-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#description {
+  width: 200px;
+  padding: 5px;
+  display: flex;
+  height: 70px;
+}
+
+#description-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#add-location-form button[type="submit"] {
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  height: 30px;
+  align-self: center;
+}
+
+#add-location-form button[type="submit"]:hover {
   background-color: #111;
 }
 
