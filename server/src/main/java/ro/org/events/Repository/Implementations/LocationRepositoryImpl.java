@@ -5,10 +5,7 @@ import ro.org.events.Repository.DatabaseConn;
 import ro.org.events.Repository.Interfaces.ILocationRepository;
 import ro.org.events.Repository.Models.LocationModel;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Types;
+import java.sql.*;
 
 @Repository
 public class LocationRepositoryImpl implements ILocationRepository {
@@ -40,7 +37,38 @@ public class LocationRepositoryImpl implements ILocationRepository {
 
     @Override
     public LocationModel getLocation_byId(int id) {
-        return null;
+
+        LocationModel location = null;
+
+        try(Connection conn = DatabaseConn.getConnection())
+        {
+
+            CallableStatement stmt = conn.prepareCall("{CALL location_package.select_location_by_id(?)}");
+
+            // Set input parameter
+            stmt.setInt(1, id);
+
+            // Execute the stored function
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next())
+            {
+                location = new LocationModel();
+                location.setId(rs.getInt("id"));
+                location.setName(rs.getString("name"));
+                location.setAddress(rs.getString("address"));
+                location.setCapacity(rs.getInt("capacity"));
+                location.setDescription(rs.getString("description"));
+            }
+
+            rs.close();
+            stmt.close();
+
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return location;
     }
 
     @Override

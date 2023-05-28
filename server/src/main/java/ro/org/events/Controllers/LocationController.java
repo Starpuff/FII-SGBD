@@ -23,4 +23,9 @@ public class LocationController {
 
         return locationService.createLocation(name, address, capacity, description);
     }
+
+    @GetMapping("/locations/id/{id}")
+    public String getLocation(@PathVariable("id") int id) {
+        return locationService.getLocation_byId(id).toString();
+    }
 }
