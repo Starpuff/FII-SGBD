@@ -51,17 +51,24 @@
       </div>
     </form>
 
+    <!-- Event grid old
     <div id="event-grid">
-      <!-- Sample event elements -->
       <div class="event">
         <h3>Event 1</h3>
         <p>Location: Location 1</p>
         <p>Description: Lorem ipsum dolor sit amet</p>
+        <div class="private-event-buttons">
+          <button class="attend-event"><img src="../images/tick.png"></button>
+          <button class="not-attending-event"><img src="../images/cross.png"></button>
+        </div>
       </div>
       <div class="event">
         <h3>Event 2</h3>
         <p>Location: Location 2</p>
         <p>Description: Consectetur adipiscing elit</p>
+        <div class="public-event-button">
+          <button class="attend-event"><img src="../images/tick.png"></button>
+        </div>
       </div>
       <div class="event">
         <h3>Event 3</h3>
@@ -104,6 +111,28 @@
         <p>Description: Lorem ipsum dolor sit amet</p>
       </div>
     </div>
+  -->
+
+    <!-- Event grid new -->
+  <div id="event-grid">
+
+    <!-- Event Template -->
+    <div id="event-template" style="display: none;">
+      <div class="event">
+        <h3 class="event-name"></h3>
+        <p class="event-location"></p>
+        <p class="event-description"></p>
+        <div class="private-event-buttons">
+          <button class="attend-event"><img src="../images/tick.png"></button>
+          <button class="not-attending-event"><img src="../images/cross.png"></button>
+        </div>
+        <div class="public-event-button">
+          <button class="attend-event"><img src="../images/tick.png"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
     <!-- Pop-up form for adding events -->
     <div id="add-event-popup" class="popup">

@@ -168,7 +168,43 @@
     padding: 10px;
   }
 
-  /* search-events.css (existing styles) */
+  .event .private-event-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .event .private-event-buttons button {
+    width: 50%;
+    height: 40px; /* Set the desired height */
+    background-color: #fff;
+    color: #000; /* Change the text color to make it visible */
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .event .private-event-buttons button:hover {
+    background-color: #f1f1f1;
+  }
+
+  .event .public-event-button button {
+    width: 100%;
+    height: 40px; /* Set the desired height */
+    background-color: #fff;
+    color: #000; /* Change the text color to make it visible */
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .event .public-event-button button:hover {
+    background-color: #f1f1f1;
+  }
 
 /* Pop-up styles */
 .popup {
