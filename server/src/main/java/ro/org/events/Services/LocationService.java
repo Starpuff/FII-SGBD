@@ -25,4 +25,8 @@ public class LocationService {
     public LocationModel getLocation_byAddress(String address) {
         return locationRepository.getLocation_byAddress(address);
     }
+
+    public String updateLocation(int id, String name, String address, int capacity, String description) {
+        return locationRepository.updateLocation(id, name, address, capacity, description);
+    }
 }

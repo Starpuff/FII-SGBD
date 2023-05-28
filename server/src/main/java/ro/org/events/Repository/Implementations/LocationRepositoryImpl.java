@@ -109,7 +109,34 @@ public class LocationRepositoryImpl implements ILocationRepository {
 
     @Override
     public String updateLocation(int id, String name, String address, int capacity, String description) {
-        return null;
+
+        String message = null;
+
+        try(Connection conn = DatabaseConn.getConnection())
+        {
+            CallableStatement stmt = conn.prepareCall("{? = CALL location_package.update_location(?,?,?,?,?)}");
+
+            //set input parameters
+            stmt.setInt(2, id);
+            stmt.setString(3, name);
+            stmt.setString(4, address);
+            stmt.setInt(5, capacity);
+            stmt.setString(6, description);
+
+            //register output parameter
+            stmt.registerOutParameter(1, Types.VARCHAR);
+
+            //execute the stored function
+            stmt.execute();
+
+            message = stmt.getString(1);
+            stmt.close();
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return message;
     }
 
     @Override
