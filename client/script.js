@@ -4,7 +4,7 @@ document.getElementById("login-form").addEventListener("submit", function(event)
   var formData = new FormData();
   formData.append("username", document.getElementById("username").value);
   formData.append("password", document.getElementById("password").value);
-  window.location.href = "../search-events/search-events.html";
+  //window.location.href = "../search-events/search-events.html";
   fetch('http://localhost:5000/api/login', {
     method: 'POST',
     body: formData
@@ -21,7 +21,7 @@ document.getElementById("login-form").addEventListener("submit", function(event)
       // Store the user id in session storage
       sessionStorage.setItem("userId", data);
       // Redirect to search page or perform any other action based on the user id
-      //window.location.href = "../search/search.html";
+      window.location.href = "../search-events/search-events.html";
     }
   })
   .catch(function(error) {
