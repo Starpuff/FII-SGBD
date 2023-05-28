@@ -17,4 +17,6 @@ public interface ILocationRepository
     String deleteLocation_byAddress(String address);
 
     String searchLocation_byDescription(String description);
+
+    String getLocationsPaginated(int page, int size);
 }

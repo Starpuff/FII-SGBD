@@ -222,4 +222,32 @@ public class LocationRepositoryImpl implements ILocationRepository {
 
         return jsonResult;
     }
+
+    @Override
+    public String getLocationsPaginated(int page, int size) {
+
+        String jsonResult = null;
+
+        String sql = "SELECT * FROM location_package.get_paginated_locations(?,?)";
+
+
+        try (Connection conn = DatabaseConn.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            // Set input parameters
+            stmt.setInt(1, page);
+            stmt.setInt(2, size);
+
+            // Execute the query
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                jsonResult = rs.getString(1);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return jsonResult;
+    }
 }
