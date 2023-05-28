@@ -12,14 +12,14 @@ document.getElementById("login-form").addEventListener("submit", function(event)
   .then(function(response) {
     return response.json();
   })
-  .then(function(data) {
-   
+  .then(function(data) {   
     // Process the response data
     if (data === -1) {
       alert("Invalid username or password");
     } else {
       // Store the user id in session storage
-      sessionStorage.setItem("userId", data);
+      sessionStorage.setItem("userId", data.userId);
+      sessionStorage.setItem("isAdmin", data.isAdmin);
       // Redirect to search page or perform any other action based on the user id
       window.location.href = "../search-events/search-events.html";
     }
