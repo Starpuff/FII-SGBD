@@ -21,4 +21,8 @@ public class LocationService {
     public LocationModel getLocation_byId(int id) {
         return locationRepository.getLocation_byId(id);
     }
+
+    public LocationModel getLocation_byAddress(String address) {
+        return locationRepository.getLocation_byAddress(address);
+    }
 }

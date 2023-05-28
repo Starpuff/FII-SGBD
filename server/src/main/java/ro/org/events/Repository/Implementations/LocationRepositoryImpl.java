@@ -73,7 +73,38 @@ public class LocationRepositoryImpl implements ILocationRepository {
 
     @Override
     public LocationModel getLocation_byAddress(String address) {
-        return null;
+
+        LocationModel location = null;
+
+        try(Connection conn = DatabaseConn.getConnection())
+        {
+
+            CallableStatement stmt = conn.prepareCall("{CALL location_package.select_location_by_address(?)}");
+
+            // Set input parameter
+            stmt.setString(1, address);
+
+            // Execute the stored function
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next())
+            {
+                location = new LocationModel();
+                location.setId(rs.getInt("id"));
+                location.setName(rs.getString("name"));
+                location.setAddress(rs.getString("address"));
+                location.setCapacity(rs.getInt("capacity"));
+                location.setDescription(rs.getString("description"));
+            }
+
+            rs.close();
+            stmt.close();
+
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return location;
     }
 
     @Override
