@@ -59,4 +59,10 @@ public class LocationController {
     public String searchLocation(@PathVariable("description") String description) {
         return locationService.searchLocation_byDescription(description);
     }
+
+    @PostMapping("/locations/paginated")
+    public String getPaginatedLocations(@RequestParam("page") int page,
+                                        @RequestParam("size") int size) {
+        return locationService.getLocationsPaginated(page, size);
+    }
 }
