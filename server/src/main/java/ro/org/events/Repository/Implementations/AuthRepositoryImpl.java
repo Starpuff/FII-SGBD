@@ -5,43 +5,35 @@ import ro.org.events.Repository.DatabaseConn;
 import ro.org.events.Repository.Interfaces.IAuthRepository;
 import ro.org.events.Repository.Models.UserModel;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 @Repository
 public class AuthRepositoryImpl implements IAuthRepository {
     @Override
-    public int login_user(String username, String password) {
+    public String login_user(String username, String password) {
+        String sql = "SELECT * FROM auth_page.check_credentials(?, ?)";
+        String jsonResult = null;
 
-        String sql = "{? = call auth_page.check_credentials(?, ?)}";
-        int login_status = 0;
+        try (Connection conn = DatabaseConn.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-        try(Connection conn = DatabaseConn.getConnection())
-        {
-            CallableStatement callableStatement = conn.prepareCall(sql);
+            // Set input parameters
+            stmt.setString(1, username);
+            stmt.setString(2, password);
 
-            // Set input parameter
-            callableStatement.setString(2, username);
-            callableStatement.setString(3, password);
+            // Execute the query
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                jsonResult = rs.getString(1);
+            }
 
-            // set output parameter
-            callableStatement.registerOutParameter(1, java.sql.Types.INTEGER);
-
-            // Execute the stored function
-            callableStatement.execute();
-
-            login_status = callableStatement.getInt(1);
-            callableStatement.close();
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-
-        return login_status;
+        return jsonResult;
     }
+
 
     @Override
     public UserModel register_user(String username, String password)

@@ -15,7 +15,7 @@ public class AuthService {
         this.authRepository = authRepository;
     }
 
-    public int login(String username, String password) {
+    public String login(String username, String password) {
         return authRepository.login_user(username, password);
     }
 
