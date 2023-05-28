@@ -54,4 +54,9 @@ public class LocationController {
     public String deleteLocation(@PathVariable("address") String address) {
         return locationService.deleteLocation_byAddress(address);
     }
+
+    @GetMapping("/locations/search/{description}")
+    public String searchLocation(@PathVariable("description") String description) {
+        return locationService.searchLocation_byDescription(description);
+    }
 }

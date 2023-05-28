@@ -37,4 +37,8 @@ public class LocationService {
     public String deleteLocation_byAddress(String address) {
         return locationRepository.deleteLocation_byAddress(address);
     }
+
+    public String searchLocation_byDescription(String description) {
+        return locationRepository.searchLocation_byDescription(description);
+    }
 }
