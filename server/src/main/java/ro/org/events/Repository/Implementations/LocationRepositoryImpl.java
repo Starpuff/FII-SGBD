@@ -141,11 +141,59 @@ public class LocationRepositoryImpl implements ILocationRepository {
 
     @Override
     public String deleteLocation_byId(int id) {
-        return null;
+
+        String message = null;
+
+        try(Connection conn = DatabaseConn.getConnection())
+        {
+            CallableStatement stmt = conn.prepareCall("{? = CALL location_package.delete_location_by_id(?)}");
+
+            //set input parameters
+            stmt.setInt(2, id);
+
+            //register output parameter
+            stmt.registerOutParameter(1, Types.VARCHAR);
+
+            //execute the stored function
+            stmt.execute();
+
+            message = stmt.getString(1);
+            stmt.close();
+
+        }catch (SQLException exception)
+        {
+            throw new RuntimeException(exception);
+        }
+
+        return message;
     }
 
     @Override
     public String deleteLocation_byAddress(String address) {
-        return null;
+
+        String message = null;
+
+        try(Connection conn = DatabaseConn.getConnection())
+        {
+            CallableStatement stmt = conn.prepareCall("{? = CALL location_package.delete_location_by_address(?)}");
+
+            //set input parameters
+            stmt.setString(2, address);
+
+            //register output parameter
+            stmt.registerOutParameter(1, Types.VARCHAR);
+
+            //execute the stored function
+            stmt.execute();
+
+            message = stmt.getString(1);
+            stmt.close();
+
+        }catch (SQLException exception)
+        {
+            throw new RuntimeException(exception);
+        }
+
+        return message;
     }
 }

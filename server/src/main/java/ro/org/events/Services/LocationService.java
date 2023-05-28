@@ -29,4 +29,12 @@ public class LocationService {
     public String updateLocation(int id, String name, String address, int capacity, String description) {
         return locationRepository.updateLocation(id, name, address, capacity, description);
     }
+
+    public String deleteLocation_byId(int id) {
+        return locationRepository.deleteLocation_byId(id);
+    }
+
+    public String deleteLocation_byAddress(String address) {
+        return locationRepository.deleteLocation_byAddress(address);
+    }
 }

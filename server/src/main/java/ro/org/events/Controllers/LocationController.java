@@ -44,4 +44,14 @@ public class LocationController {
 
         return locationService.updateLocation(id, name, address, capacity, description);
     }
+
+    @DeleteMapping("/locations/id/{id}")
+    public String deleteLocation(@PathVariable("id") int id) {
+        return locationService.deleteLocation_byId(id);
+    }
+
+    @DeleteMapping("/locations/address/{address}")
+    public String deleteLocation(@PathVariable("address") String address) {
+        return locationService.deleteLocation_byAddress(address);
+    }
 }
