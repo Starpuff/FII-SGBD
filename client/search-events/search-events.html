@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Events Page</title>
+  <link rel="stylesheet" type="text/css" href="search-events.css">
+</head>
+<body>
+  <header>
+    <img src="../images/event_manager_nav.png">
+    <nav>
+      
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="../index.html">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="content">
+  <div class="container">
+
+    <div class="searches">
+      <ul>
+        <li><h2 id="search-events"><a href="#">Search Events</a></h2></li>
+        <li><h2 id="search-locations"><a href="../search-locations/search-locations.html">Search Locations</a></h2></li>
+        <button class="add_event">+ Add Event</button>
+      </ul>
+    </div>
+    <form id="search-form">
+
+      <div class ="event-name-search">
+        <div class="form-row">
+          <label for="event-name">Event Name:</label>
+          <input type="text" id="event-name" name="event-name">
+        </div>
+        <div class="form-row">
+          <input type="submit" value="Search">
+        </div>
+      </div>
+      <img src="../images/linie-orizontala.png">
+      <div class = "location-name-search">
+        <div class="form-row">
+          <label for="location-name">Location Name:</label>
+          <input type="text" id="location-name" name="location-name">
+        </div>
+        <div class="form-row">
+          <input type="submit" value="Search">
+        </div>
+      </div>
+    </form>
+
+    <!-- Event grid old
+    <div id="event-grid">
+      <div class="event">
+        <h3>Event 1</h3>
+        <p>Location: Location 1</p>
+        <p>Description: Lorem ipsum dolor sit amet</p>
+        <div class="private-event-buttons">
+          <button class="attend-event"><img src="../images/tick.png"></button>
+          <button class="not-attending-event"><img src="../images/cross.png"></button>
+        </div>
+      </div>
+      <div class="event">
+        <h3>Event 2</h3>
+        <p>Location: Location 2</p>
+        <p>Description: Consectetur adipiscing elit</p>
+        <div class="public-event-button">
+          <button class="attend-event"><img src="../images/tick.png"></button>
+        </div>
+      </div>
+      <div class="event">
+        <h3>Event 3</h3>
+        <p>Location: Location 3</p>
+        <p>Description: Sed do eiusmod tempor</p>
+      </div>
+      <div class="event">
+        <h3>Event 4</h3>
+        <p>Location: Location 4</p>
+        <p>Description: Incididunt ut labore et dolore magna aliqua</p>
+      </div>
+      <div class="event">
+        <h3>Event 5</h3>
+        <p>Location: Location 5</p>
+        <p>Description: Ut enim ad minim veniam</p>
+      </div>
+      <div class="event">
+        <h3>Event 6</h3>
+        <p>Location: Location 6</p>
+        <p>Description: Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+      </div>
+      <div class="event">
+        <h3>Event 7</h3>
+        <p>Location: Location 7</p>
+        <p>Description: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+      </div>
+      <div class="event">
+        <h3>Event 8</h3>
+        <p>Location: Location 8</p>
+        <p>Description: Excepteur sint occaecat cupidatat non proident</p>
+      </div>
+      <div class="event">
+        <h3>Event 9</h3>
+        <p>Location: Location 9</p>
+        <p>Description: Sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+      </div>
+      <div class="event">
+        <h3>Event 10</h3>
+        <p>Location: Location 10</p>
+        <p>Description: Lorem ipsum dolor sit amet</p>
+      </div>
+    </div>
+  -->
+
+    <!-- Event grid new -->
+  <div id="event-grid">
+
+    <!-- Event Template -->
+    <div id="event-template" style="display: none;">
+      <div class="event">
+        <h3 class="event-name"></h3>
+        <p class="event-location"></p>
+        <p class="event-description"></p>
+        <div class="private-event-buttons">
+          <button class="attend-event"><img src="../images/tick.png"></button>
+          <button class="not-attending-event"><img src="../images/cross.png"></button>
+        </div>
+        <div class="public-event-button">
+          <button class="attend-event"><img src="../images/tick.png"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Pop-up form for adding events -->
+    <div id="add-event-popup" class="popup">
+      <div class="popup-content">
+        <span class="close">&times;</span>
+        <h2>Add Event</h2>
+        <form id="add-event-form">
+          <div class="a-form-row">
+            <label for="event-name">Event Name:</label>
+            <input type="text" id="event-name" name="event-name" required>
+          </div>
+          <div class="a-form-row">
+            <label for="event-location">Event Location:</label>
+            <input type="text" id="event-location" name="event-location" required>
+          </div>
+          <div class="b-form-row">
+            <label for="event-date">Event Date:</label>
+            <input type="date" id="event-date" name="event-date" required>
+          </div>
+          <div class="b-form-row">
+            <label for="event-visibility">Event Visibility:</label>
+            <select id="event-visibility" name="event-visibility">
+              <option value="public">Public</option>
+              <option value="private">Private</option>
+            </select>
+          </div>
+          <div class="a-form-row" id="invited-people-container" style="display: none;">
+            <label for="invited-people">Invited People:</label>
+            <textarea id="invited-people" name="invited-people" placeholder="username1, username2, username3, ..."></textarea>
+          </div>
+          <div class="form-row-button">
+            <button type="submit">Add Event</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+  </div>
+  </div>
+
+  <script src="search-events.js"></script>
+</body>
+</html>
