@@ -20,7 +20,7 @@ public class UserService {
         return userRepository.createUser(username, password, isAdmin);
     }
 
-    public UserModel getUser_byId(int id) {
+    public UserModel getUser_byID(int id) {
         return userRepository.getUser_byId(id);
     }
 
