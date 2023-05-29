@@ -36,6 +36,8 @@ addEventForm.addEventListener('submit', function(e) {
   closePopup();
 });
 
+
+
 // Function to populate the event grid
 function populateEventGrid() {
   const eventGrid = document.getElementById('event-grid');
@@ -60,26 +62,11 @@ function populateEventGrid() {
     eventDescription.textContent = `Description: ${event.description}`;
     eventElement.appendChild(eventDescription);
 
-    if (event.visibility === 'private') {
-      const privateButtons = document.createElement('div');
-      privateButtons.className = 'private-event-buttons';
-
-      const attendButton = createButton('attend-event', 'tick.png');
-      const notAttendingButton = createButton('not-attending-event', 'cross.png');
-
-      privateButtons.appendChild(attendButton);
-      privateButtons.appendChild(notAttendingButton);
-
-      eventElement.appendChild(privateButtons);
-    } else if (event.visibility === 'public') {
-      const publicButton = document.createElement('div');
-      publicButton.className = 'public-event-button';
-
-      const attendButton = createButton('attend-event', 'tick.png');
-
-      publicButton.appendChild(attendButton);
-      eventElement.appendChild(publicButton);
-    }
+    const deleteButton = document.createElement('div');
+    deleteButton.className = 'delete-event-button';
+    const delButton = createButton('delete-event', 'trash.png');
+    deleteButton.appendChild(delButton);
+    eventElement.appendChild(deleteButton);
 
     eventGrid.appendChild(eventElement);
   });
@@ -106,3 +93,35 @@ function createButton(className, imageName) {
 
 // Call the function to populate the event grid
 populateEventGrid();
+
+
+//add-locations-popup
+const locationPopup = document.getElementById('add-location-popup');
+const addLocationButton = document.querySelector('.add_location');
+const closeLocationButton = locationPopup.querySelector('.close');
+const addLocationForm = document.getElementById('add-location-form');
+const descriptionContainer = document.getElementById('description-container');
+
+function openLocationPopup() {
+  locationPopup.style.display = 'block';    
+}
+
+function closeLocationPopup() {
+  locationPopup.style.display = 'none';
+}
+
+addLocationButton.addEventListener('click', openLocationPopup);
+closeLocationButton.addEventListener('click', closeLocationPopup);
+
+addLocationForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const locationName = addLocationForm.elements['location-name'].value;
+  const locationAddress = addLocationForm.elements['location-address'].value;
+  const locationCapacity = addLocationForm.elements['location-capacity'].value;
+  const description = addLocationForm.elements['description'].value;
+
+  alert('Location added successfully!');
+
+  closeLocationPopup();
+});

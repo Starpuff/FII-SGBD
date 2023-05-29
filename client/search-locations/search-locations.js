@@ -5,6 +5,7 @@ const addEventForm = document.getElementById('add-event-form');
 const eventTypeInput = addEventForm.elements['event-visibility'];
 console.log(eventTypeInput);
 const invitedPeopleContainer = document.getElementById('invited-people-container');
+import { locationData } from '../js/locations.js';
 
 function openPopup() {
   popup.style.display = 'block';
@@ -34,3 +35,46 @@ addEventForm.addEventListener('submit', function(e) {
 
   closePopup();
 });
+
+function populateLocationGrid() {
+  const locationGrid = document.getElementById('location-grid');
+  
+  locationGrid.innerHTML = '';
+
+  var formData = new FormData();
+  formData.append('page', 1);
+  formData.append('size', 1000);
+
+  fetch('http://localhost:5000/api/locations/paginated', {
+    method: 'POST',
+    body: formData})
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    data.forEach(location => {
+      const locationCard = document.createElement('div');
+      locationCard.className = 'location';
+
+      const locationName = document.createElement('h3');
+      locationName.textContent = location.name;
+      locationCard.appendChild(locationName);
+
+      const locationAddress = document.createElement('p');
+      locationAddress.textContent = `Location: ${location.address}`;
+      locationCard.appendChild(locationAddress);
+
+      const locationCapacity = document.createElement('p');
+      locationCapacity.textContent = `Capacity: ${location.capacity}`;
+      locationCard.appendChild(locationCapacity);
+
+      const locationDescription = document.createElement('p');
+      locationDescription.textContent = `Description: ${location.description}`;
+      locationCard.appendChild(locationDescription);
+
+      locationGrid.appendChild(locationCard);
+  });
+  }
+  );
+}
+
+populateLocationGrid();

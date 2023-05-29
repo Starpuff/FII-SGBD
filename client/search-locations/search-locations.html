@@ -56,46 +56,14 @@
 
     <div id="location-grid">
       <!-- Sample location elements -->
-      <div class="location">
-        <h3>Location 1</h3>
-        <p>Description: Lorem ipsum dolor sit amet</p>
-      </div>
-      <div class="location">
-        <h3>Location 2</h3>
-        <p>Description: Consectetur adipiscing elit</p>
-      </div>
-      <div class="location">
-        <h3>Location 3</h3>
-        <p>Description: Sed do eiusmod tempor</p>
-      </div>
-      <div class="location">
-        <h3>Location 4</h3>
-        <p>Description: Incididunt ut labore et dolore magna aliqua</p>
-      </div>
-      <div class="location">
-        <h3>Location 5</h3>
-        <p>Description: Ut enim ad minim veniam</p>
-      </div>
-      <div class="location">
-        <h3>Location 6</h3>
-        <p>Description: Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
-      </div>
-      <div class="location">
-        <h3>Location 7</h3>
-        <p>Description: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-      </div>
-      <div class="location">
-        <h3>Location 8</h3>
-        <p>Description: Excepteur sint occaecat cupidatat non proident</p>
-      </div>
-      <div class="location">
-        <h3>Location 9</h3>
-        <p>Description: Sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-      </div>
-      <div class="location">
-        <h3>Location 10</h3>
-        <p>Description: Lorem ipsum dolor sit amet</p>
-      </div>
+      <div id="location-template" style="display: none">
+        <div class="location">
+            <h3 class="location-name"></h3>
+            <p class="location-address"></p>
+            <p class="location-capacity"></p>
+            <p class = "location-description"></p>
+        </div>
+      </div>          
     </div>
 
 
@@ -139,6 +107,7 @@
   </div>
 
 
-  <script src="../search-events/search-events.js"></script>
+  <script src="../search-locations/search-locations.js"  type="module"></script>
+  <script src="../js/locations.js"  type="module"></script>
 </body>
 </html>

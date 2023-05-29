@@ -168,6 +168,31 @@ header {
     border: 1px solid #ccc;
     padding: 10px;
   }
+  
+  .location .delete-location-button {
+    width: 100%;
+    align-self: flex-end;
+  }
+
+    .location .delete-location-button:hover {
+        background-color: #f1f1f1;
+    }
+
+  .location button {
+    width: 100%;
+    height: 50px; /* Set the desired height */
+    background-color: #fff;
+    color: #000; /* Change the text color to make it visible */
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .location button :hover {
+    background-color: #f1f1f1;
+  }
 
 /* Add Event Pop-up styles */
 
@@ -291,4 +316,66 @@ header {
   font-weight: bold;
   cursor: pointer;
 }
+  
+
+/* Add Location Pop-up styles */
+#add-location-popup {
+    display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0px;
+  overflow:auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  #add-location-popup.open {
+    display: block;
+  }
+  
+  #add-location-popup h2 {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  #add-location-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #description {
+    width: 200px;
+    padding: 5px;
+    display: flex;
+    height: 70px;
+  }
+  
+  #description-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  #add-location-form button[type="submit"] {
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    align-self: center;
+  }
+  
+  #add-location-form button[type="submit"]:hover {
+    background-color: #111;
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
   
