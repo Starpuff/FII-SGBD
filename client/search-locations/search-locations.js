@@ -41,7 +41,17 @@ function populateLocationGrid() {
   
   locationGrid.innerHTML = '';
 
-  locationData.forEach(location => {
+  var formData = new FormData();
+  formData.append('page', 1);
+  formData.append('size', 1000);
+
+  fetch('http://localhost:5000/api/locations/paginated', {
+    method: 'POST',
+    body: formData})
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    data.forEach(location => {
       const locationCard = document.createElement('div');
       locationCard.className = 'location';
 
@@ -63,6 +73,8 @@ function populateLocationGrid() {
 
       locationGrid.appendChild(locationCard);
   });
+  }
+  );
 }
 
 populateLocationGrid();
