@@ -5,7 +5,7 @@ const addEventForm = document.getElementById('add-event-form');
 const eventTypeInput = addEventForm.elements['event-visibility'];
 console.log(eventTypeInput);
 const invitedPeopleContainer = document.getElementById('invited-people-container');
-import { locationData } from '../js/locations.js';
+//import { locationData } from '../js/locations.js';
 
 function openPopup() {
   popup.style.display = 'block';
@@ -73,8 +73,7 @@ function populateLocationGrid() {
 
       locationGrid.appendChild(locationCard);
   });
-  }
-  );
+  });
 }
 
 populateLocationGrid();

@@ -43,8 +43,18 @@ function populateEventGrid() {
   // Clear existing content in the event grid
   eventGrid.innerHTML = '';
 
-  // Iterate over the event data and create event elements
-  eventData.forEach(event => {
+  var formData = new FormData();
+  formData.append('page',1);
+  formData.append('size',1000);
+
+  fetch('http://localhost:5000/api/events/paginated', {
+    method: 'POST',
+    body: formData})
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    data.forEach(event => {
+
     const eventElement = document.createElement('div');
     eventElement.className = 'event';
 
@@ -82,6 +92,7 @@ function populateEventGrid() {
     }
 
     eventGrid.appendChild(eventElement);
+  });
   });
 }
 
