@@ -5,6 +5,7 @@ const addEventForm = document.getElementById('add-event-form');
 const eventTypeInput = addEventForm.elements['event-visibility'];
 console.log(eventTypeInput);
 const invitedPeopleContainer = document.getElementById('invited-people-container');
+import { eventData } from '../js/events.js';
 
 function openPopup() {
   popup.style.display = 'block';
@@ -34,72 +35,6 @@ addEventForm.addEventListener('submit', function(e) {
 
   closePopup();
 });
-
-/// Event grid
-// Sample event data
-const eventData = [
-  {
-    name: 'Event 1',
-    location: 'Location 1',
-    description: 'Lorem ipsum dolor sit amet',
-    visibility: 'private'
-  },
-  {
-    name: 'Event 2',
-    location: 'Location 2',
-    description: 'Consectetur adipiscing elit',
-    visibility: 'public'
-  },
-  {
-    name: 'Event 1',
-    location: 'Location 1',
-    description: 'Lorem ipsum dolor sit amet',
-    visibility: 'private'
-  },
-  {
-    name: 'Event 2',
-    location: 'Location 2',
-    description: 'Consectetur adipiscing elit',
-    visibility: 'public'
-  },
-  {
-    name: 'Event 1',
-    location: 'Location 1',
-    description: 'Lorem ipsum dolor sit amet',
-    visibility: 'private'
-  },
-  {
-    name: 'Event 2',
-    location: 'Location 2',
-    description: 'Consectetur adipiscing elit',
-    visibility: 'public'
-  },
-  {
-    name: 'Event 1',
-    location: 'Location 1',
-    description: 'Lorem ipsum dolor sit amet',
-    visibility: 'private'
-  },
-  {
-    name: 'Event 2',
-    location: 'Location 2',
-    description: 'Consectetur adipiscing elit',
-    visibility: 'public'
-  },
-  {
-    name: 'Event 1',
-    location: 'Location 1',
-    description: 'Lorem ipsum dolor sit amet',
-    visibility: 'private'
-  },
-  {
-    name: 'Event 2',
-    location: 'Location 2',
-    description: 'Consectetur adipiscing elit',
-    visibility: 'public'
-  },
-  // Add more event objects as needed
-];
 
 // Function to populate the event grid
 function populateEventGrid() {
