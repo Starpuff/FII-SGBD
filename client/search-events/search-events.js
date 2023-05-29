@@ -28,12 +28,43 @@ addEventForm.addEventListener('submit', function(e) {
   const eventName = addEventForm.elements['event-name'].value;
   const eventLocation = addEventForm.elements['event-location'].value;
   const eventDate = addEventForm.elements['event-date'].value;
-  const eventType = addEventForm.elements['event-type'].value;
+  // const parts = eventDate.split('-');
+  // const transformedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+  const eventType = addEventForm.elements['event-visibility'].value;
   const invitedPeople = (eventType === 'private') ? addEventForm.elements['invited-people'].value : '';
 
-  alert('Event added successfully!');
 
-  closePopup();
+  var formData = new FormData();
+  formData.append('name', eventName);
+  formData.append('date', eventDate);
+  formData.append('type', eventType);
+  formData.append('ticket_price', 0);
+  formData.append('location_address', eventLocation);
+  //formData.append('invitedPeople', invitedPeople);
+
+  console.log(eventName);
+  console.log(eventDate);
+  console.log(eventType);
+  console.log(eventLocation);
+
+  fetch('http://localhost:5000/api/events', {
+    method: 'POST',
+    body: formData
+  })
+    .then(response => {
+      if(response.status === 200) {
+        alert('Event added successfully!');
+        closePopup();
+        populateEventGrid();
+      }
+      else {
+        alert('Error adding event!');
+      }
+    })
+    .catch(error => {
+      alert('Error adding event!');
+    });
+    closePopup();
 });
 
 // Function to populate the event grid
@@ -62,13 +93,17 @@ function populateEventGrid() {
     eventName.textContent = event.name;
     eventElement.appendChild(eventName);
 
+    const eventDate = document.createElement('p');
+    eventDate.textContent = `Date: ${event.date}`;
+    eventElement.appendChild(eventDate);
+
     const eventLocation = document.createElement('p');
-    eventLocation.textContent = `Location: ${event.location}`;
+    eventLocation.textContent = `Address: ${event.location_name}`;
     eventElement.appendChild(eventLocation);
 
-    const eventDescription = document.createElement('p');
-    eventDescription.textContent = `Description: ${event.description}`;
-    eventElement.appendChild(eventDescription);
+    const eventVisibility = document.createElement('p');
+    eventVisibility.textContent = `Visibility: ${event.type}`;
+    eventElement.appendChild(eventVisibility);
 
     if (event.visibility === 'private') {
       const privateButtons = document.createElement('div');
