@@ -28,12 +28,43 @@ addEventForm.addEventListener('submit', function(e) {
   const eventName = addEventForm.elements['event-name'].value;
   const eventLocation = addEventForm.elements['event-location'].value;
   const eventDate = addEventForm.elements['event-date'].value;
-  const eventType = addEventForm.elements['event-type'].value;
+  // const parts = eventDate.split('-');
+  // const transformedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+  const eventType = addEventForm.elements['event-visibility'].value;
   const invitedPeople = (eventType === 'private') ? addEventForm.elements['invited-people'].value : '';
 
-  alert('Event added successfully!');
 
-  closePopup();
+  var formData = new FormData();
+  formData.append('name', eventName);
+  formData.append('date', eventDate);
+  formData.append('type', eventType);
+  formData.append('ticket_price', 0);
+  formData.append('location_address', eventLocation);
+  //formData.append('invitedPeople', invitedPeople);
+
+  console.log(eventName);
+  console.log(eventDate);
+  console.log(eventType);
+  console.log(eventLocation);
+
+  fetch('http://localhost:5000/api/events', {
+    method: 'POST',
+    body: formData
+  })
+    .then(response => {
+      if(response.status === 200) {
+        alert('Event added successfully!');
+        closePopup();
+        populateEventGrid();
+      }
+      else {
+        alert('Error adding event!');
+      }
+    })
+    .catch(error => {
+      alert('Error adding event!');
+    });
+    closePopup();
 });
 
 
@@ -64,13 +95,21 @@ function populateEventGrid() {
     eventName.textContent = event.name;
     eventElement.appendChild(eventName);
 
+    const eventDate = document.createElement('p');
+    eventDate.textContent = `Date: ${event.date}`;
+    eventElement.appendChild(eventDate);
+
     const eventLocation = document.createElement('p');
-    eventLocation.textContent = `Location: ${event.location}`;
+    eventLocation.textContent = `Address: ${event.location_name}`;
     eventElement.appendChild(eventLocation);
 
-    const eventDescription = document.createElement('p');
-    eventDescription.textContent = `Description: ${event.description}`;
-    eventElement.appendChild(eventDescription);
+    const eventVisibility = document.createElement('p');
+    eventVisibility.textContent = `Visibility: ${event.type}`;
+    eventElement.appendChild(eventVisibility);
+
+    // const eventDescription = document.createElement('p');
+    // eventDescription.textContent = `Description: ${event.description}`;
+    // eventElement.appendChild(eventDescription);
 
     const deleteButton = document.createElement('div');
     deleteButton.className = 'delete-event-button';
@@ -132,7 +171,38 @@ addLocationForm.addEventListener('submit', function(e) {
   const locationCapacity = addLocationForm.elements['location-capacity'].value;
   const description = addLocationForm.elements['description'].value;
 
-  alert('Location added successfully!');
+  console.log(locationName);
+  console.log(locationAddress);
+  console.log(locationCapacity);
+  console.log(description);
 
-  closeLocationPopup();
+  // const data = {
+  //   name: locationName,
+  //   address: locationAddress,
+  //   capacity: locationCapacity,
+  //   description: description
+  // };
+  var formData = new FormData();
+  formData.append('name', locationName);
+  formData.append('address', locationAddress);
+  formData.append('capacity', locationCapacity);
+  formData.append('description', description);
+
+  fetch('http://localhost:5000/api/locations', {
+    method: 'POST',
+    body: formData
+  })
+    .then(response => {
+      if(response.status === 200) {
+        alert('Location added successfully!');
+        closeLocationPopup();
+    }
+    else {
+        alert('An error occurred while adding the location');
+    }})
+    .catch(error => {
+      console.error(error);
+      alert('An error occurred while adding the location');
+    });
+    closeLocationPopup();
 });
