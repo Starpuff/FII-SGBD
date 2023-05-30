@@ -149,7 +149,8 @@ header {
   }
   
   input[type="submit"],
-  .location-description-search button {
+  .location-description-search button,
+  .location-name-search button {
     padding: 5px 10px;
     background-color: #333;
     color: #fff;
@@ -158,7 +159,8 @@ header {
   }
 
   input[type="submit"]:hover,
-  .location-description-search button:hover {
+  .location-description-search button:hover,
+  .location-name-search button:hover {
     background-color: #111;
   }
   
