@@ -67,6 +67,102 @@ addEventForm.addEventListener('submit', function(e) {
     closePopup();
 });
 
+const searchLocDescButton = document.querySelector('.loc-desc-button');
+
+// Add event listener to the button
+searchLocDescButton.addEventListener('click', getByDescription);
+
+const searchLocAddrButton = document.querySelector('.loc-addr-button');
+
+searchLocAddrButton.addEventListener('click', getByAddress);
+
+function getByAddress() {
+  console.log('buttonPressed rttyr');
+  
+  const address = document.getElementById('location-name').value;
+  console.log(address);
+  const locationGrid = document.getElementById('location-grid');
+  locationGrid.innerHTML = '';
+
+  var url = 'http://localhost:5000/api/locations/address/' + address;
+  fetch(url, {
+    method: 'GET',
+  })
+    .then(response => {console.log(response); return response.json()})
+    .then(data => {
+      console.log(data);
+      
+      data.forEach(location => {
+        const locationCard = document.createElement('div');
+        locationCard.className = 'location';
+
+        const locationName = document.createElement('h3');
+        locationName.textContent = location.name;
+        locationCard.appendChild(locationName);
+
+        const locationAddress = document.createElement('p');
+        locationAddress.textContent = `Location: ${location.address}`;
+        locationCard.appendChild(locationAddress);
+
+        const locationCapacity = document.createElement('p');
+        locationCapacity.textContent = `Capacity: ${location.capacity}`;
+        locationCard.appendChild(locationCapacity);
+
+        const locationDescription = document.createElement('p');
+        locationDescription.textContent = `Description: ${location.description}`;
+        locationCard.appendChild(locationDescription);
+
+        locationGrid.appendChild(locationCard);
+    });
+    })
+    .catch(error => {
+      alert('Error getting locations!');
+    });
+}
+
+function getByDescription() {
+  console.log('buttonPressed');
+
+  const description = document.getElementById('location-description').value;
+  console.log(description);
+  const locationGrid = document.getElementById('location-grid');
+  locationGrid.innerHTML = '';
+  var url = 'http://localhost:5000/api/locations/search/' + description;
+  fetch(url, {
+    method: 'GET',
+  })
+    .then(response => {console.log(response); return response.json()})
+    .then(data => {
+      console.log(data);
+      
+      data.forEach(location => {
+        const locationCard = document.createElement('div');
+        locationCard.className = 'location';
+
+        const locationName = document.createElement('h3');
+        locationName.textContent = location.name;
+        locationCard.appendChild(locationName);
+
+        const locationAddress = document.createElement('p');
+        locationAddress.textContent = `Location: ${location.address}`;
+        locationCard.appendChild(locationAddress);
+
+        const locationCapacity = document.createElement('p');
+        locationCapacity.textContent = `Capacity: ${location.capacity}`;
+        locationCard.appendChild(locationCapacity);
+
+        const locationDescription = document.createElement('p');
+        locationDescription.textContent = `Description: ${location.description}`;
+        locationCard.appendChild(locationDescription);
+
+        locationGrid.appendChild(locationCard);
+    });
+    })
+    .catch(error => {
+      alert('Error getting locations!');
+    });
+}
+
 function populateLocationGrid() {
   const locationGrid = document.getElementById('location-grid');
   

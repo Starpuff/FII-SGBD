@@ -29,30 +29,33 @@
       </ul>
     </div>
 
-    <form id="search-form">
-
-        <div class = "location-name-search">
-            <div class="form-row">
-              <label for="location-name">Location Name:</label>
-              <input type="text" id="location-name" name="location-name">
-            </div>
-            <div class="form-row">
-              <input type="submit" value="Search">
-            </div>
-        </div>
-
-      <img src="../images/linie-orizontala.png">
-
-      <div class = "location-description-search">
+    <div id="search-form">
+      <div class="location-name-search">
         <div class="form-row">
-          <label for="location-description">Location Description:</label>
-          <input type="text" id="location-description" name="location-description">
+          <label for="location-name">Location Address:</label>
+          <input type="text" id="location-name" name="location-name" />
         </div>
         <div class="form-row">
-          <input type="submit" value="Search">
+          <button class ="loc-addr-button">Search</button>
         </div>
       </div>
-    </form>
+
+      <img src="../images/linie-orizontala.png" />
+
+      <div class="location-description-search">
+        <div class="form-row">
+          <label for="location-description">Location Description:</label>
+          <input
+            type="text"
+            id="location-description"
+            name="location-description"
+          />
+        </div>
+        <div class="form-row">
+          <button class ="loc-desc-button">Search</button>
+        </div>
+      </div>
+    </div>
 
     <div id="location-grid">
       <!-- Sample location elements -->
