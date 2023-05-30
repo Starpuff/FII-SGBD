@@ -67,7 +67,95 @@ addEventForm.addEventListener('submit', function(e) {
     closePopup();
 });
 
+const deleteEventButton = document.querySelector('.delete-event-button');
+deleteEventButton.addEventListener('click', deleteEvent);
 
+function deleteEvent() {
+    console.log('buttonPressed');
+    const id = document.getElementById('event-name').value;
+    console.log(id);
+    
+    var url = 'http://localhost:5000/api/locations/id/' + id;
+    fetch(url, {
+      method: 'DELETE',
+    })
+      .then(response => {console.log(response); return response.json()})
+      .then(data => {
+        console.log(data);
+        alert('Event deleted successfully!');
+        populateEventGrid();
+      }
+      )
+      .catch(error => {
+        alert('Error deleting event!');
+      }
+      );
+}
+
+//search by event id
+
+const searchEventById = document.querySelector('.event-id-button');
+
+searchEventById.addEventListener('click', getById);
+
+function getById() {
+  console.log('buttonPressed');
+  
+  const id = document.getElementById('event-name').value;
+  console.log(id);
+  const eventGrid = document.getElementById('event-grid');
+  eventGrid.innerHTML = '';
+
+  var url = 'http://localhost:5000/api/events/id/' + id;
+  fetch(url, {
+    method: 'GET',
+  })
+    .then(response => {console.log(response); return response.json()})
+    .then(data => {
+      console.log(data);
+      
+      data.forEach(event => {
+        const eventElement = document.createElement('div');
+        eventElement.className = 'event';
+
+        const eventName = document.createElement('h3');
+        eventName.textContent = event.name;
+        eventElement.appendChild(eventName);
+
+        const eventDate = document.createElement('p');
+        eventElement.appendChild(eventDate);
+
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        const dateParts = new Date(event.date).toLocaleDateString('en-US', options).split('/');
+        const formattedDate = `${dateParts[2]}-${dateParts[0].padStart(2, '0')}-${dateParts[1].padStart(2, '0')}`;
+
+        eventDate.textContent = `Date: ${formattedDate}`;
+
+        eventLocation.textContent = `Address: ${event.location_name}`;
+        const eventLocation = document.createElement('p');
+        
+        eventElement.appendChild(eventLocation);
+        eventVisibility.textContent = `Visibility: ${event.type}`;
+        const eventVisibility = document.createElement('p');
+        
+        eventElement.appendChild(eventVisibility);
+    // const eventDescription = document.createElement('p');
+    // eventDescription.textContent = `Description: ${event.description}`;
+    // eventElement.appendChild(eventDescription);
+
+        const deleteButton = document.createElement('div');
+        deleteButton.className = 'delete-event-button';
+        const delButton = createButton('delete-event', 'trash.png');
+        deleteButton.appendChild(delButton);
+        eventElement.appendChild(deleteButton);
+
+        eventGrid.appendChild(eventElement);
+      });
+    })
+    .catch(error => {
+      alert('Error getting locations!');
+    });
+}
 
 // Function to populate the event grid
 function populateEventGrid() {
