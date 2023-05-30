@@ -65,6 +65,60 @@ addEventForm.addEventListener('submit', function(e) {
     closePopup();
 });
 
+const searchLocDescButton = document.querySelector('.loc-desc-button');
+
+// Add event listener to the button
+searchLocDescButton.addEventListener('click', getByDescription);
+
+function getByDescription() {
+  console.log('buttonPressed');
+
+  const description = document.getElementById('location-description').value;
+  console.log(description);
+  const locationGrid = document.getElementById('location-grid');
+  locationGrid.innerHTML = '';
+  var url = 'http://localhost:5000/api/locations/search/' + description;
+  fetch(url, {
+    method: 'GET',
+  })
+    .then(response => {console.log(response); return response.json()})
+    .then(data => {
+      console.log(data);
+      
+      data.forEach(location => {
+        const locationCard = document.createElement('div');
+        locationCard.className = 'location';
+
+        const locationName = document.createElement('h3');
+        locationName.textContent = location.name;
+        locationCard.appendChild(locationName);
+
+        const locationAddress = document.createElement('p');
+        locationAddress.textContent = `Location: ${location.address}`;
+        locationCard.appendChild(locationAddress);
+
+        const locationCapacity = document.createElement('p');
+        locationCapacity.textContent = `Capacity: ${location.capacity}`;
+        locationCard.appendChild(locationCapacity);
+
+        const locationDescription = document.createElement('p');
+        locationDescription.textContent = `Description: ${location.description}`;
+        locationCard.appendChild(locationDescription);
+
+        const deleteButton = document.createElement('div');
+        deleteButton.className = 'delete-location-button'; 
+        const delButton = createButton('delete-location','trash.png');
+        deleteButton.appendChild(delButton);
+        locationCard.appendChild(deleteButton);
+
+        locationGrid.appendChild(locationCard);
+    });
+    })
+    .catch(error => {
+      alert('Error getting locations!');
+    });
+}
+
 //add-locations-popup
 const locationPopup = document.getElementById('add-location-popup');
 const addLocationButton = document.querySelector('.add_location');

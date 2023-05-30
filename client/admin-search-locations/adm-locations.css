@@ -107,8 +107,10 @@ header {
     background-color: #111;
   }
   
-  form {
+  #search-form {
     display: flex;
+    flex-direction: row;
+
     flex-wrap :wrap;
     margin-bottom: 20px;
   }
@@ -119,7 +121,7 @@ header {
     align-items: center;
   }
 
-  form img {
+  #search-form img {
     max-width: 50px;
     margin-right: 15px;
   }
@@ -146,7 +148,8 @@ header {
     padding: 5px;
   }
   
-  input[type="submit"] {
+  input[type="submit"],
+  .location-description-search button {
     padding: 5px 10px;
     background-color: #333;
     color: #fff;
@@ -154,7 +157,8 @@ header {
     cursor: pointer;
   }
 
-  input[type="submit"]:hover {
+  input[type="submit"]:hover,
+  .location-description-search button:hover {
     background-color: #111;
   }
   
